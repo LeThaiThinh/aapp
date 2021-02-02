@@ -1,8 +1,12 @@
-import 'package:app/screen/HomeScreen.dart';
+import 'dart:collection';
+
+import 'package:app/screen/LogRegScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:path_provider/path_provider.dart';
 class UserRegister extends StatefulWidget {
   static String id='register';
   @override
@@ -10,9 +14,10 @@ class UserRegister extends StatefulWidget {
 }
 
 class _UserRegisterState extends State<UserRegister> {
-  FirebaseAuth _auth=FirebaseAuth.instance;
   FirebaseFirestore _firestore=FirebaseFirestore.instance;
-
+  CollectionReference db=FirebaseFirestore.instance.collection("Users");
+  List<DocumentSnapshot> snapshots;
+  String data;
   String name;
   String surname;
   String email;
@@ -59,18 +64,37 @@ class _UserRegisterState extends State<UserRegister> {
               RaisedButton(
                   child: Text('Register'),
                   onPressed: (){
-                    // try{
-                    //   _auth.createUserWithEmailAndPassword(
-                    //       email: email, password: password);
-                    //   _firestore.collection('Users').doc(email).set({
-                    //     'name': name,
-                    //     'surName': surname,
-                    //   });
-                    // }catch(e){
-                    //   print(e);
-                    // }
-                    Navigator.pushNamed(context, HomeScreen.id);
-                  })
+                    try{
+                      FirebaseAuth.instance.createUserWithEmailAndPassword(
+                          email: email, password: password);
+                      FirebaseAuth.instance.currentUser.updateProfile(displayName: name);
+                      _firestore.collection('Users').
+                          add({
+                        'name': name,
+                        'phone': surname,
+                        });
+
+                    }catch(e){
+                      print(e);
+                    }
+                    Navigator.pushNamed(context, LogRegScreen.id);
+                  }),
+              RaisedButton(
+                  child: Text('get'),
+                  onPressed: (){
+                    try{
+                      db.snapshots().listen((event) {
+                        setState(() {
+                          data=event.docs[1].data()["name"];
+                        });
+                      });
+                    }catch(e){
+                      print(e);
+                    }
+                  }),
+              Text(
+                data!=null?data:"non"
+              )
             ],
           ),
         ),

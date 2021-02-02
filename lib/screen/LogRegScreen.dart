@@ -1,8 +1,9 @@
-import 'file:///C:/Users/letha/AndroidStudioProjects/app/lib/screen/HomeScreen.dart';
 import 'package:app/forms/login.dart';
 import 'package:app/forms/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import 'Menu.dart';
 
 class LogRegScreen extends StatefulWidget{
   static String id = 'LogRegScreen';
@@ -35,6 +36,12 @@ class _LogRegScreenState extends State<LogRegScreen>{
                 onPressed: (){
                   Navigator.pushNamed(context,UserLogin.id);
                   },
+              ),
+              RaisedButton(
+                child: Text('Menu'),
+                onPressed: (){
+                  Navigator.pushNamed(context,Menu.id);
+                },
               ),
             ],
           ),
