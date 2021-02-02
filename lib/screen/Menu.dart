@@ -52,7 +52,7 @@ class _MenuState extends State<Menu> {
                       itemBuilder: (BuildContext context, int index) {
                         return Row(
                             children: [
-                              Image.asset("assets/Cursed bargain.jpg",height: 300,width: 300,fit: BoxFit.cover,),
+                              Image.asset("assets/"+snapshot.data[index]["image"],height: 300,width: 300,fit: BoxFit.cover,),
                               Column(
                                 children: [
                                   Text(snapshot.data[index]["name"]),
@@ -66,7 +66,7 @@ class _MenuState extends State<Menu> {
                   return Text("nô");
                 }
               ),
-            ) else Text("no"),
+            ) else Text("nô"),
           ],
         ),
     );
