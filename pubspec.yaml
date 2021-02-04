@@ -10,6 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.16.1
   firebase_core: ^0.7.0
   # cloud_firestore: ^0.14.0 other firebase dependencies
   firebase_analytics: ^7.0.1
@@ -28,4 +31,6 @@ dev_dependencies:
 flutter:
   assets:
     - assets/Cursed bargain.jpg
+    - lang/en.json
+    - lang/vn.json
   uses-material-design: true

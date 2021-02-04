@@ -3,13 +3,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Menu extends StatefulWidget {
+class MenuPage extends StatefulWidget {
   static String id="Menu";
   @override
-  _MenuState createState() => _MenuState();
+  _MenuPageState createState() => _MenuPageState();
 }
 
-class _MenuState extends State<Menu> {
+class _MenuPageState extends State<MenuPage> {
   List<Map<String,dynamic>> dishes=new List<Map<String,dynamic>>();
   CollectionReference db=FirebaseFirestore.instance.collection("Dishes");
   Stream<List<Map<String,dynamic>>> menu() async*{

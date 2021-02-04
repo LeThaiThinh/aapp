@@ -3,7 +3,7 @@ import 'package:app/forms/register.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'Menu.dart';
+import 'MenuPage.dart';
 
 class LogRegScreen extends StatefulWidget{
   static String id = 'LogRegScreen';
@@ -40,7 +40,7 @@ class _LogRegScreenState extends State<LogRegScreen>{
               RaisedButton(
                 child: Text('Menu'),
                 onPressed: (){
-                  Navigator.pushNamed(context,Menu.id);
+                  Navigator.pushNamed(context,MenuPage.id);
                 },
               ),
             ],
