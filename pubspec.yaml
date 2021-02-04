@@ -31,6 +31,6 @@ dev_dependencies:
 flutter:
   assets:
     - assets/Cursed bargain.jpg
-    - lang/en.json
-    - lang/vn.json
+    - lib/lang/en.json
+    - lib/lang/vi.json
   uses-material-design: true

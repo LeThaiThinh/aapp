@@ -1,9 +1,13 @@
 import 'package:app/classes/language.dart';
+import 'package:app/localization/DemoLocalization.dart';
+import 'package:app/localization/LocalizationConstant.dart';
 import 'package:app/pages/AboutPage.dart';
 import 'package:app/pages/SettingPage.dart';
 import 'package:app/routes/RouteName.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../main.dart';
 
 class HomePage extends StatefulWidget {
 
@@ -17,14 +21,26 @@ class _HomePageState extends State<HomePage> {
     showTimePicker(context: context, initialTime: TimeOfDay.now());
   }
   void _changeLanguage(Language language){
-    print(language.languageCode);
+    Locale _temp;
+    switch(language.languageCode){
+      case 'en':
+        _temp=Locale(language.languageCode,'🇺🇸');
+        break;
+      case 'vi':
+        _temp=Locale(language.languageCode,'VN');
+        break;
+      default:
+        _temp=Locale(language.languageCode,'🇺🇸');
+
+    }
+    MyApp.setLocale(context,_temp);
   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: _drawerList(),
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text(getTranslated(context, "homePage")),
         actions: [
           Padding(
             padding: EdgeInsets.all(8),
@@ -136,7 +152,7 @@ class _HomePageState extends State<HomePage> {
             height: MediaQuery.of(context).size.height/4,
             child: Center(
               child: Text(
-                'Personal Info',
+                getTranslated(context, "personalInfo"),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30,
